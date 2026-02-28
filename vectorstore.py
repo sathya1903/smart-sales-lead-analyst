@@ -7,7 +7,7 @@ import os
 from typing import List, Dict, Any, Optional
 import chromadb
 from chromadb.config import Settings
-from langchain_openai import OpenAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from langchain.schema import Document
 
@@ -16,12 +16,12 @@ CHROMA_PERSIST_DIR = "./chroma_db"
 COLLECTION_NAME = "sales_leads"
 
 
-def get_embeddings() -> OpenAIEmbeddings:
-    """Initialize OpenAI embeddings model."""
-    return OpenAIEmbeddings(model="text-embedding-3-small")
+def get_embeddings() -> HuggingFaceEmbeddings:
+    """Initialize HuggingFaceEmbeddings model."""
+    return HuggingFaceEmbeddings(model="all-MiniLM-L6-v2")
 
 
-def get_vectorstore(embeddings: Optional[OpenAIEmbeddings] = None) -> Chroma:
+def get_vectorstore(embeddings: Optional[HuggingFaceEmbeddings] = None) -> Chroma:
     """
     Load or create a persistent ChromaDB vectorstore.
     Returns existing store if already populated.
@@ -39,7 +39,7 @@ def get_vectorstore(embeddings: Optional[OpenAIEmbeddings] = None) -> Chroma:
 
 def add_documents_to_vectorstore(
     documents: List[Document],
-    embeddings: Optional[OpenAIEmbeddings] = None,
+    embeddings: Optional[HuggingFaceEmbeddings] = None,
 ) -> Chroma:
     """
     Embed and store a list of LangChain Documents into ChromaDB.

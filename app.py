@@ -95,13 +95,13 @@ with st.sidebar:
     st.markdown("### ⚙️ Configuration")
 
     api_key = st.text_input(
-        "OpenAI API Key",
+        "OPEN_API_KEY",
         type="password",
-        value=os.getenv("OPENAI_API_KEY", ""),
+        value=os.getenv("OPEN_API_KEY", ""),
         help="Required to run analysis. Set in .env or enter here.",
     )
     if api_key:
-        os.environ["OPENAI_API_KEY"] = api_key
+        os.environ["OPEN_API_KEY"] = api_key
 
     st.markdown("---")
     st.markdown("### 📁 Data Status")
@@ -155,8 +155,8 @@ with col2:
     process_btn = st.button("⚡ Process PDFs", use_container_width=True)
 
 if process_btn:
-    if not os.getenv("OPENAI_API_KEY"):
-        st.error("❌ Please enter your OpenAI API key in the sidebar first.")
+    if not os.getenv("OPEN_API_KEY"):
+        st.error("❌ Please enter your Open API key in the sidebar first.")
     elif not os.path.exists(PDF_DIR) or not any(
         f.endswith(".pdf") for f in os.listdir(PDF_DIR)
     ):

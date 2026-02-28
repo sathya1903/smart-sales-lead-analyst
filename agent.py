@@ -9,7 +9,7 @@ by likelihood of closing within the next month.
 """
 
 from typing import Any
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.agents import AgentExecutor, create_react_agent
 from langchain.tools import Tool
 from langchain import hub
@@ -114,10 +114,10 @@ def build_agent() -> AgentExecutor:
     Build and return a LangChain ReAct agent with vector search and LinkedIn tools.
     Uses the standard ReAct prompt from LangChain hub.
     """
-    llm = ChatOpenAI(
-        model="gpt-4o-mini",
+    llm = ChatGoogleGenerativeAI(
+        model="gemini-1.5-flash",
         temperature=0,
-        streaming=False,
+        google_api_key=os.getenv('OPEN_API_KEY'),
     )
 
     tools = [VECTOR_SEARCH_TOOL, LINKEDIN_SEARCH_TOOL]

@@ -12,9 +12,9 @@ from dotenv import load_dotenv
 def load_environment() -> None:
     """Load environment variables from .env file."""
     load_dotenv()
-    if not os.getenv("OPENAI_API_KEY"):
+    if not os.getenv("OPEN_API_KEY"):
         raise EnvironmentError(
-            "OPENAI_API_KEY not found. Please set it in your .env file."
+            "OPEN_API_KEY not found. Please set it in your .env file."
         )
 
 
